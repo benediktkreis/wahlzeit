@@ -1,3 +1,30 @@
+/*Class name: CoordinateTest.java
+ * 
+ * Version: 1.1
+ * 
+ * Creation date: 29/10/2017
+ * 
+ * Last change date: 05/11/2017
+ * 
+ * Copyright (c) 2017 by Benedikt Kreis
+ *
+ * This file is part of the Wahlzeit photo rating application.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
+ */
+
 package org.wahlzeit.model;
 
 import static org.junit.Assert.*;
@@ -5,8 +32,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CoordinateTest {
+	
+	//declaration of coordinates that are used in the test
 	Coordinate c1, c2, c3, c4;
 	
+	//initialization of used coordinates
 	@Before
 	public void setUp() throws Exception{
 		c1 = new Coordinate(0,0,0);
@@ -15,7 +45,8 @@ public class CoordinateTest {
 		c4 = new Coordinate(1,2,3);
 	}
 	
-	
+	//test case for getDistance method
+	//checks if equation for distance works correctly
 	@Test
 	public void testGetDistance() {
 		double distance1 = c1.getDistance(c2);
@@ -37,6 +68,8 @@ public class CoordinateTest {
 		System.out.println();
 	}
 	
+	//test case for isEqual method
+	//checks if 2 given coordinates are shown as equal
 	@Test
 	public void testIsEqual() {
 		
@@ -52,6 +85,8 @@ public class CoordinateTest {
 		System.out.println();
 	}
 	
+	//test case for equals method
+	//checks if 2 given coordinates are shown as equal	
 	@Test
 	public void testEquals() {
 		
@@ -67,6 +102,8 @@ public class CoordinateTest {
 		System.out.println();
 	}
 	
+	//test case for getters
+	//checks if getters are getting the correct coordinates
 	@Test
 	public void testGetters() {
 		

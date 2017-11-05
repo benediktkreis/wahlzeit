@@ -1,4 +1,11 @@
-/*
+/* Class name: Location.java
+ * 
+ * Version: 1.1
+ * 
+ * Creation date: 29/10/2017
+ * 
+ * Last change date: 05/11/2017
+ *  
  * Copyright (c) 2017 by Benedikt Kreis
  *
  * This file is part of the Wahlzeit photo rating application.
@@ -25,14 +32,12 @@ public class Location {
 
 	public Coordinate coordinate = null;
 	
-	public Location (){
-		
-	}
-	
+	//constructor for a coordinate
 	public Location (Coordinate c) {
 		coordinate = c;
 	}
 	
+	//constructor for a coordinate with x,y,z information
 	public Location (double x, double y, double z) {
 		coordinate = new Coordinate (x,y,z);
 	}
