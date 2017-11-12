@@ -90,7 +90,7 @@ public class Coordinate {
 			return false;
 		if (Double.doubleToLongBits(z) != Double.doubleToLongBits(other.z))
 			return false;
-		return true;
+		return isEqual(other);
 	}
 
 	
