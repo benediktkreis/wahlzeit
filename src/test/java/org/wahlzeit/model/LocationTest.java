@@ -34,13 +34,13 @@ import org.junit.Test;
 public class LocationTest{
 	
 	//declaration of coordinates and locations that are used in the test
-	Coordinate c1, c2;
+	CartesianCoordinate c1, c2;
 	Location l1, l2;
 	
 	//initialization of used coordinates and locations
 	@Before
 	public void setUp() throws Exception{
-		c1 = new Coordinate(1,2,3);
+		c1 = new CartesianCoordinate(1,2,3);
 		
 		l1 = new Location(c1);
 		l2 = new Location(1,2,3);

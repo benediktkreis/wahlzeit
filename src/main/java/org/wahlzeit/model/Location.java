@@ -30,16 +30,16 @@ package org.wahlzeit.model;
 
 public class Location {
 
-	public Coordinate coordinate = null;
+	public Coordinate coordinates = null;
 	
 	//constructor for a coordinate
-	public Location (Coordinate c) {
-		coordinate = c;
+	public Location (Coordinate co) {
+		coordinates = co;
 	}
 	
 	//constructor for a coordinate with x,y,z information
 	public Location (double x, double y, double z) {
-		coordinate = new Coordinate (x,y,z);
+		coordinates = new CartesianCoordinate (x,y,z);
 	}
 	
 }

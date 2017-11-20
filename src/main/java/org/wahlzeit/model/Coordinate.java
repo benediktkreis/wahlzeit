@@ -1,10 +1,10 @@
 /*Class name: Coordinate.java
  * 
- * Version: 1.1
+ * Version: 2.0
  * 
  * Creation date: 29/10/2017
  * 
- * Last change date: 05/11/2017
+ * Last change date: 19/11/2017
  * 
  * Copyright (c) 2017 by Benedikt Kreis
  *
@@ -27,84 +27,42 @@
 
 package org.wahlzeit.model;
 
-public class Coordinate {
+public interface Coordinate {
 	
-	//declaration of cartesian coordinates
-	private double x;
-	private double y;
-	private double z;
-	
-	//initialization of cartesian coordinates	
-	public Coordinate (double x, double y, double z){
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
-	
-	// direct distance
-	double getDistance(Coordinate coordinate) {	
-		double difX = x-coordinate.getX();
-		double difY = y-coordinate.getY();
-		double difZ = z-coordinate.getZ();
+	/**
+	 * @methodtype conversion
+	 */
+	//spheric coordinates
+	public SphericCoordinate asSphericCoordinate();
+	  
+	/** 
+	 * @methodtype conversion
+	 */
+	//cartesian coordinates
+	public CartesianCoordinate asCartesianCoordinate();
 		
-		double distance = Math.sqrt(difX*difX+difY*difY+difZ*difZ);
-		
-		return distance;
-		
-	}
+	/**
+	 * @methodtype boolean-query.
+	 */
+	//isEqual()
+	public boolean isEqual(Coordinate c);
+	  
+	/**
+	 * @methodtype query-method
+	 */
+	//gets the distance between 2 coordinates
+	public double getDistance(Coordinate c);
+	 
+	/**
+	 * @methodtype query-method
+	 */
+	//gets the distance between 2 cartesian coordinates
+	public double asCartesianDistance(Coordinate c);
+	 
+	/**
+	 * @methodtype query-method
+	 */
+	//gets the distance between 2 sphericcoordinates
+	public double asSphericDistance(Coordinate c);
 	
-	//checks if 2 given coordinates are equal
-	boolean isEqual (Coordinate coordinate) {
-		if (x == coordinate.getX() && y == coordinate.getY() && z == coordinate.getZ()) return true;
-		else return false;
-	}
-	
-	//generated hashCode method
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(x);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(y);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(z);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
-
-	//generated equals method
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Coordinate other = (Coordinate) obj;
-		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
-			return false;
-		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))
-			return false;
-		if (Double.doubleToLongBits(z) != Double.doubleToLongBits(other.z))
-			return false;
-		return isEqual(other);
-	}
-
-	
-	//generated getters 
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public double getZ() {
-		return z;
-	}
-
 }

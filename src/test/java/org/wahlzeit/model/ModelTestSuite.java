@@ -38,7 +38,7 @@ import org.junit.runner.RunWith;
 @SuiteClasses
 ({
 	org.wahlzeit.model.AccessRightsTest.class,
-	org.wahlzeit.model.CoordinateTest.class,
+	CartesianCoordinateTest.class,
 	org.wahlzeit.model.FlagReasonTest.class,
 	org.wahlzeit.model.FoodPhotoFactoryTest.class,
 	org.wahlzeit.model.FoodPhotoManagerTest.class,
@@ -47,6 +47,7 @@ import org.junit.runner.RunWith;
 	org.wahlzeit.model.GuestTest.class,
 	org.wahlzeit.model.LocationTest.class,
 	org.wahlzeit.model.PhotoFilterTest.class,
+	SphericCoordinateTest.class,
 	org.wahlzeit.model.TagsTest.class,
 	org.wahlzeit.model.UserStatusTest.class,
 	org.wahlzeit.model.ValueTest.class
