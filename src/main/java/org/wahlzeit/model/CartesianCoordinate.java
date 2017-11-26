@@ -37,7 +37,7 @@ public class CartesianCoordinate implements Coordinate{
 	private double z;
 	public static final double Epsilon = 0.0001;
 	
-    public static boolean compare(double d1, double d2) {
+    public static boolean isDoubleEqual(double d1, double d2) {
         double difference = d1 - d2;
         return Math.abs(difference) < Epsilon;
     }
@@ -117,7 +117,7 @@ public class CartesianCoordinate implements Coordinate{
     @Override
     public SphericCoordinate asSphericCoordinate() {
         double radius = Math.sqrt(x * x + y * y + z * z);
-        if(compare(radius, 0) || Double.isNaN(radius)) {
+        if(isDoubleEqual(radius, 0) || Double.isNaN(radius)) {
             return new SphericCoordinate(0, 0, 0);
         }
         // atan2 respects devision by zero
@@ -138,7 +138,7 @@ public class CartesianCoordinate implements Coordinate{
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || !(o instanceof Coordinate)) {
+        if (!(o instanceof Coordinate)) {
             return false;
         }
         return this.isEqual((Coordinate) o);
@@ -154,7 +154,7 @@ public class CartesianCoordinate implements Coordinate{
         }
         CartesianCoordinate that = c.asCartesianCoordinate();
 
-        return compare(this.x, that.x) && compare(this.y, that.y) && compare(this.z, that.z);
+        return isDoubleEqual(this.x, that.x) && isDoubleEqual(this.y, that.y) && isDoubleEqual(this.z, that.z);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class SphericCoordinate implements Coordinate{
 	private double radius;
 	static final double Epsilon = 0.0001;
 
-    public static boolean compare(double d1, double d2) {
+    public static boolean isDoubleEqual(double d1, double d2) {
         double difference = d1 - d2;
         return Math.abs(difference) < Epsilon;
     }
@@ -161,7 +161,7 @@ public class SphericCoordinate implements Coordinate{
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || !(o instanceof Coordinate)) {
+        if (!(o instanceof Coordinate)) {
             return false;
         }
         return this.isEqual((Coordinate) o);
@@ -177,7 +177,7 @@ public class SphericCoordinate implements Coordinate{
         }
         SphericCoordinate that = c.asSphericCoordinate();
 
-        return compare(this.latitude, that.latitude) && compare(this.longitude, that.longitude) && compare(this.radius, that.radius);
+        return isDoubleEqual(this.latitude, that.latitude) && isDoubleEqual(this.longitude, that.longitude) && isDoubleEqual(this.radius, that.radius);
     }
 
     @Override
