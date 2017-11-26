@@ -137,52 +137,6 @@ public class CartesianCoordinateTest {
         assertEquals(Math.sqrt(3), coordinateXYZ.getDistance(coordinateIncrXYZ), Epsilon);
     }
 
-    @Test
-    public void testAsSphericCoordinateAsCartesian() {
-        assertEquals(coordinateXYZ, coordinateXYZ.asSphericCoordinate().asCartesianCoordinate());
-    }
-
-    @Test
-    public void testAsSphericCoordinate1() {
-        CartesianCoordinate coordinate1 = new CartesianCoordinate(5, 0, 0);
-        SphericCoordinate coordinate2 = new SphericCoordinate(0, 90, 5);
-        assertEquals(coordinate2, coordinate1.asSphericCoordinate());
-    }
-
-    @Test
-    public void testAsSphericCoordinate2() {
-        CartesianCoordinate coordinate1 = new CartesianCoordinate(0, 5, 0);
-        SphericCoordinate coordinate2 = new SphericCoordinate(90, 90, 5);
-        assertEquals(coordinate2, coordinate1.asSphericCoordinate());
-    }
-    @Test
-    public void testgetSphericDistanceZero() {
-        assertEquals(0, coordinateXYZ.getSphericDistance(coordinateXYZ), Epsilon);
-    }
-
-    @Test
-    public void testgetSphericDistanceOneX() {
-        CartesianCoordinate coordinateChangedX = new CartesianCoordinate(x + 1, y, z);
-        assertEquals(1, coordinateXYZ.getSphericDistance(coordinateChangedX), Epsilon);
-    }
-
-    @Test
-    public void testgetSphericDistanceOneY() {
-        CartesianCoordinate coordinateChangedY = new CartesianCoordinate(x, y + 1, z);
-        assertEquals(1, coordinateXYZ.getSphericDistance(coordinateChangedY), Epsilon);
-    }
-
-    @Test
-    public void testgetSphericDistanceOneZ() {
-        CartesianCoordinate coordinateChangedY = new CartesianCoordinate(x, y, z + 1);
-        assertEquals(1, coordinateXYZ.getSphericDistance(coordinateChangedY), Epsilon);
-    }
-
-    @Test
-    public void testgetSphericDistanceXYZ() {
-        CartesianCoordinate coordinateIncrXYZ = new CartesianCoordinate(x + 1, y + 1, z + 1);
-        assertEquals(Math.sqrt(3), coordinateXYZ.getSphericDistance(coordinateIncrXYZ), Epsilon);
-    }
     
     @Test
     public void testAsCartesianCoordinate1() {

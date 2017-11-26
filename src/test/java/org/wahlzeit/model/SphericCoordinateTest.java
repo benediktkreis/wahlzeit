@@ -144,32 +144,6 @@ public class SphericCoordinateTest {
     }
 
     @Test
-    public void testAsCartesianCoordinateAsSpheric() {
-        assertEquals(defaultCoordinate, defaultCoordinate.asCartesianCoordinate().asSphericCoordinate());
-    }
-
-    @Test
-    public void testAsCartesianCoordinate1() {
-        SphericCoordinate coordinate = new SphericCoordinate(90, 0, 5);
-        CartesianCoordinate coordinateExpected = new CartesianCoordinate(0, 0, 5);
-        assertEquals(coordinateExpected, coordinate.asCartesianCoordinate());
-    }
-
-    @Test
-    public void testAsCartesianCoordinate2() {
-        SphericCoordinate coordinate = new SphericCoordinate(0, 90, 5);
-        CartesianCoordinate coordinateExpected = new CartesianCoordinate(5, 0, 0);
-        assertEquals(coordinateExpected, coordinate.asCartesianCoordinate());
-    }
-
-    @Test
-    public void testAsCartesianCoordinate3() {
-        SphericCoordinate coordinate = new SphericCoordinate(70, -10, 5);
-        CartesianCoordinate coordinateExpected = new CartesianCoordinate(-0.2969558731, -0.8158795558, 4.924038765);
-        assertEquals(coordinateExpected, coordinate.asCartesianCoordinate());
-    }
-
-    @Test
     public void testGetDistanceZero() {
         assertEquals(0, defaultCoordinate.getDistance(defaultCoordinate), Epsilon);
     }
@@ -233,36 +207,4 @@ public class SphericCoordinateTest {
         assertEquals(2 * 5, coordinate1.getSphericDistance(coordinate2), Epsilon);
     }
     
-    @Test
-    public void testgetCartesianDistanceZero() {
-        assertEquals(0, defaultCoordinate.getCartesianDistance(defaultCoordinate), Epsilon);
-    }
-
-    @Test
-    public void testgetCartesianDistanceLatitude() {
-        SphericCoordinate coordinate1 = new SphericCoordinate(0, 0, 5);
-        SphericCoordinate coordinate2 = new SphericCoordinate(0, 0, 5);
-        assertEquals(0, coordinate1.getCartesianDistance(coordinate2), Epsilon);
-    }
-
-    @Test
-    public void testgetCartesianDistanceLongitude() {
-        SphericCoordinate coordinate1 = new SphericCoordinate(0, 90, 5);
-        SphericCoordinate coordinate2 = new SphericCoordinate(0, -90, 5);
-        assertEquals(2 * 5, coordinate1.getCartesianDistance(coordinate2), Epsilon);
-    }
-
-    @Test
-    public void testgetCartesianDistanceOneRadius() {
-        SphericCoordinate coordinateChangedY = new SphericCoordinate(latitude, longitude, radius + 1);
-        assertEquals(1, defaultCoordinate.getCartesianDistance(coordinateChangedY), Epsilon);
-    }
-
-    @Test
-    public void testgetCartesianDistanceAllParameters() {
-        SphericCoordinate coordinate1 = new SphericCoordinate(90, 0, 5);
-        SphericCoordinate coordinate2 = new SphericCoordinate(0, 180, 5);
-        assertEquals(2 * 5, coordinate1.getCartesianDistance(coordinate2), Epsilon);
-    }
-
 }
