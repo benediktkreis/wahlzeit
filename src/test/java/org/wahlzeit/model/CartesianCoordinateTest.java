@@ -156,32 +156,32 @@ public class CartesianCoordinateTest {
         assertEquals(coordinate2, coordinate1.asSphericCoordinate());
     }
     @Test
-    public void testAsSphericDistanceZero() {
-        assertEquals(0, coordinateXYZ.asSphericDistance(coordinateXYZ), Epsilon);
+    public void testgetSphericDistanceZero() {
+        assertEquals(0, coordinateXYZ.getSphericDistance(coordinateXYZ), Epsilon);
     }
 
     @Test
-    public void testAsSphericDistanceOneX() {
+    public void testgetSphericDistanceOneX() {
         CartesianCoordinate coordinateChangedX = new CartesianCoordinate(x + 1, y, z);
-        assertEquals(1, coordinateXYZ.asSphericDistance(coordinateChangedX), Epsilon);
+        assertEquals(1, coordinateXYZ.getSphericDistance(coordinateChangedX), Epsilon);
     }
 
     @Test
-    public void testAsSphericDistanceOneY() {
+    public void testgetSphericDistanceOneY() {
         CartesianCoordinate coordinateChangedY = new CartesianCoordinate(x, y + 1, z);
-        assertEquals(1, coordinateXYZ.asSphericDistance(coordinateChangedY), Epsilon);
+        assertEquals(1, coordinateXYZ.getSphericDistance(coordinateChangedY), Epsilon);
     }
 
     @Test
-    public void testAsSphericDistanceOneZ() {
+    public void testgetSphericDistanceOneZ() {
         CartesianCoordinate coordinateChangedY = new CartesianCoordinate(x, y, z + 1);
-        assertEquals(1, coordinateXYZ.asSphericDistance(coordinateChangedY), Epsilon);
+        assertEquals(1, coordinateXYZ.getSphericDistance(coordinateChangedY), Epsilon);
     }
 
     @Test
-    public void testAsSphericDistanceXYZ() {
+    public void testgetSphericDistanceXYZ() {
         CartesianCoordinate coordinateIncrXYZ = new CartesianCoordinate(x + 1, y + 1, z + 1);
-        assertEquals(Math.sqrt(3), coordinateXYZ.asSphericDistance(coordinateIncrXYZ), Epsilon);
+        assertEquals(Math.sqrt(3), coordinateXYZ.getSphericDistance(coordinateIncrXYZ), Epsilon);
     }
     
     @Test
@@ -190,32 +190,32 @@ public class CartesianCoordinateTest {
     }
 
     @Test
-    public void testAsCartesianDistanceZero() {
-        assertEquals(0, coordinateXYZ.asCartesianDistance(coordinateXYZ), Epsilon);
+    public void testgetCartesianDistanceZero() {
+        assertEquals(0, coordinateXYZ.getCartesianDistance(coordinateXYZ), Epsilon);
     }
 
     @Test
-    public void testAsCartesianDistanceOneX() {
+    public void testgetCartesianDistanceOneX() {
         CartesianCoordinate coordinateChangedX = new CartesianCoordinate(x + 1, y, z);
-        assertEquals(1, coordinateXYZ.asCartesianDistance(coordinateChangedX), Epsilon);
+        assertEquals(1, coordinateXYZ.getCartesianDistance(coordinateChangedX), Epsilon);
     }
 
     @Test
-    public void testAsCartesianDistanceOneY() {
+    public void testgetCartesianDistanceOneY() {
         CartesianCoordinate coordinateChangedY = new CartesianCoordinate(x, y + 1, z);
-        assertEquals(1, coordinateXYZ.asCartesianDistance(coordinateChangedY), Epsilon);
+        assertEquals(1, coordinateXYZ.getCartesianDistance(coordinateChangedY), Epsilon);
     }
 
     @Test
-    public void testAsCartesianDistanceOneZ() {
+    public void testgetCartesianDistanceOneZ() {
         CartesianCoordinate coordinateChangedY = new CartesianCoordinate(x, y, z + 1);
-        assertEquals(1, coordinateXYZ.asCartesianDistance(coordinateChangedY), Epsilon);
+        assertEquals(1, coordinateXYZ.getCartesianDistance(coordinateChangedY), Epsilon);
     }
 
     @Test
-    public void testAsCartesianDistanceXYZ() {
+    public void testgetCartesianDistanceXYZ() {
         CartesianCoordinate coordinateIncrXYZ = new CartesianCoordinate(x + 1, y + 1, z + 1);
-        assertEquals(Math.sqrt(3), coordinateXYZ.asCartesianDistance(coordinateIncrXYZ), Epsilon);
+        assertEquals(Math.sqrt(3), coordinateXYZ.getCartesianDistance(coordinateIncrXYZ), Epsilon);
     }
 
 
