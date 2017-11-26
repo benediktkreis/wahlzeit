@@ -1,10 +1,10 @@
 /*Class name: CartesianCoordinate.java
  * 
- * Version: 1.0
+ * Version: 1.1
  * 
  * Creation date: 19/11/2017
  * 
- * Last change date: 19/11/2017
+ * Last change date: 26/11/2017
  * 
  * Copyright (c) 2017 by Benedikt Kreis
  *
