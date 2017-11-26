@@ -29,18 +29,13 @@ package org.wahlzeit.model;
 
 
 
-public class CartesianCoordinate implements Coordinate{
+public class CartesianCoordinate extends AbstractCoordinate{
 	
 	//declaration of cartesian coordinates
 	private double x;
 	private double y;
 	private double z;
-	public static final double Epsilon = 0.0001;
-	
-    public static boolean isDoubleEqual(double d1, double d2) {
-        double difference = d1 - d2;
-        return Math.abs(difference) < Epsilon;
-    }
+
     
 	/**
 	 * @methodtype Constructor
@@ -127,12 +122,12 @@ public class CartesianCoordinate implements Coordinate{
     }
 
     @Override
-    public double asCartesianDistance(Coordinate c) {
+    public double getCartesianDistance(Coordinate c) {
         return this.getDistance(c);
     }
 
     @Override
-    public double asSphericDistance(Coordinate c) {
+    public double getSphericDistance(Coordinate c) {
         return this.asSphericCoordinate().getDistance(c);
     }
 

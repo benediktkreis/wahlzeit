@@ -1,10 +1,10 @@
-/*Class name: Coordinate.java
+/*Class name: AbstractCoordinate.java
  * 
- * Version: 2.0
+ * Version: 1.0
  * 
- * Creation date: 29/10/2017
+ * Creation date: 26/11/2017
  * 
- * Last change date: 19/11/2017
+ * Last change date: 26/11/2017
  * 
  * Copyright (c) 2017 by Benedikt Kreis
  *
@@ -27,42 +27,63 @@
 
 package org.wahlzeit.model;
 
-public interface Coordinate {
+public abstract class AbstractCoordinate implements Coordinate{
 	
+	public AbstractCoordinate() {
+		
+	}
+	
+	//declaration of globally used Epsilon parameter
+	public static final double Epsilon = 0.0001;
+	
+	/**
+	 * @methodtype query
+	 */
+    public static boolean isDoubleEqual(double d1, double d2) {
+        double difference = d1 - d2;
+        return Math.abs(difference) < Epsilon;
+    }
+    
 	/**
 	 * @methodtype conversion
 	 */
 	//spheric coordinates
-	public SphericCoordinate asSphericCoordinate();
+	public abstract SphericCoordinate asSphericCoordinate();
 	  
 	/** 
 	 * @methodtype conversion
 	 */
 	//cartesian coordinates
-	public CartesianCoordinate asCartesianCoordinate();
+	public abstract CartesianCoordinate asCartesianCoordinate();
 		
 	/**
 	 * @methodtype boolean-query.
 	 */
 	//isEqual()
-	public boolean isEqual(Coordinate c);
+	public boolean isEqual(Coordinate c) {
+		if (c != null) {
+			return isDoubleEqual(this.getDistance(c), 0.0);
+		}
+		return false;
+	}
 	  
 	/**
 	 * @methodtype query-method
 	 */
 	//gets the distance between 2 coordinates
-	public double getDistance(Coordinate c);
+	public abstract double getDistance(Coordinate c);
 	 
 	/**
 	 * @methodtype query-method
 	 */
 	//gets the distance between 2 cartesian coordinates
-	public double getCartesianDistance(Coordinate c);
+	public abstract double getCartesianDistance(Coordinate c);
 	 
 	/**
 	 * @methodtype query-method
 	 */
 	//gets the distance between 2 sphericcoordinates
-	public double getSphericDistance(Coordinate c);
+	public abstract double getSphericDistance(Coordinate c);
 	
+
 }
