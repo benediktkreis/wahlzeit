@@ -1,4 +1,4 @@
-/*Class name: CartesianCoordinate.java
+/**Class name: CartesianCoordinate.java
  * 
  * Version: 1.1
  * 
@@ -31,16 +31,18 @@ package org.wahlzeit.model;
 
 public class CartesianCoordinate extends AbstractCoordinate{
 	
-	//declaration of cartesian coordinates
+	/**
+	 * declaration of cartesian coordinates
+	 */
 	private double x;
 	private double y;
 	private double z;
 
     
 	/**
+	 * initialization of cartesian coordinates
 	 * @methodtype Constructor
 	 */
-	//initialization of cartesian coordinates	
 	public CartesianCoordinate (double x, double y, double z){
 		this.x = x;
 		this.y = y;
@@ -98,8 +100,10 @@ public class CartesianCoordinate extends AbstractCoordinate{
         return new CartesianCoordinate(this);
     }
     
-    //Calculates the cartesian distance between this and the given coordinate.
-    @Override
+    /**
+     * Calculates the cartesian distance between this and the given coordinate.
+     */
+  /*  @Override
 	public double getDistance(Coordinate c) {
     	CartesianCoordinate that = c.asCartesianCoordinate();
     	
@@ -108,35 +112,20 @@ public class CartesianCoordinate extends AbstractCoordinate{
         double deltaZ = that.getZ() - this.getZ();
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
     }
-
+*/
     @Override
     public SphericCoordinate asSphericCoordinate() {
         double radius = Math.sqrt(x * x + y * y + z * z);
         if(isDoubleEqual(radius, 0) || Double.isNaN(radius)) {
             return new SphericCoordinate(0, 0, 0);
         }
-        // atan2 respects devision by zero
         double latitude = Math.toDegrees(Math.atan2(y, x));
         double longitude = Math.toDegrees(Math.acos(z / radius));
         return new SphericCoordinate(latitude, longitude, radius);
     }
 
-    @Override
     public double getCartesianDistance(Coordinate c) {
         return this.getDistance(c);
-    }
-
-    @Override
-    public double getSphericDistance(Coordinate c) {
-        return this.asSphericCoordinate().getDistance(c);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Coordinate)) {
-            return false;
-        }
-        return this.isEqual((Coordinate) o);
     }
 
     @Override

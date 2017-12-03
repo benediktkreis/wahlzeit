@@ -1,4 +1,4 @@
-/*Class name: Coordinate.java
+/**Class name: Coordinate.java
  * 
  * Version: 2.0
  * 
@@ -30,39 +30,32 @@ package org.wahlzeit.model;
 public interface Coordinate {
 	
 	/**
+	 * spheric coordinates
 	 * @methodtype conversion
 	 */
-	//spheric coordinates
 	public SphericCoordinate asSphericCoordinate();
 	  
 	/** 
+	 * cartesian coordinates
 	 * @methodtype conversion
 	 */
-	//cartesian coordinates
 	public CartesianCoordinate asCartesianCoordinate();
 		
 	/**
+	 * isEqual()
 	 * @methodtype boolean-query.
 	 */
-	//isEqual()
 	public boolean isEqual(Coordinate c);
 	  
 	/**
+	 * gets the distance between 2 coordinates
 	 * @methodtype query-method
 	 */
-	//gets the distance between 2 coordinates
 	public double getDistance(Coordinate c);
 	 
 	/**
+	 * gets the distance between 2 cartesian coordinates
 	 * @methodtype query-method
 	 */
-	//gets the distance between 2 cartesian coordinates
-	public double getCartesianDistance(Coordinate c);
-	 
-	/**
-	 * @methodtype query-method
-	 */
-	//gets the distance between 2 sphericcoordinates
-	public double getSphericDistance(Coordinate c);
 	
 }

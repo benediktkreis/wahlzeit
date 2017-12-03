@@ -1,4 +1,4 @@
-/*Class name: SphericCoordinate.java
+/**Class name: SphericCoordinate.java
  * 
  * Version: 1.1
  * 
@@ -29,14 +29,13 @@ package org.wahlzeit.model;
 
 public class SphericCoordinate extends AbstractCoordinate{
 	
-	//declaration of cartesian coordinates
+	/**
+	 *declaration of cartesian coordinates
+	 */
 	private double latitude;
 	private double longitude;
 	private double radius;
 
-	/**
-	 *
-	 */
 	public static final double maxLattitude = 90;
 	public static final double minLattitude = -90;
 	public static final double maxLongitude = 180;
@@ -116,21 +115,6 @@ public class SphericCoordinate extends AbstractCoordinate{
 		this.radius = radius;
 	}
 
-
-	//Calculates the spheric distance between this and the given coordinate
-	@Override
-	public double getDistance(Coordinate c) {
-		SphericCoordinate that = c.asSphericCoordinate();
-
-		double summand1 = this.radius * this.radius;
-		double summand2 = that.radius * that.radius;
-		double summand3 = 2 * this.radius * that.radius *
-				(Math.sin(Math.toRadians(this.longitude)) * Math.sin(Math.toRadians(that.longitude)) * Math.cos(Math.toRadians(this.latitude - that.latitude)) +
-				Math.cos(Math.toRadians(this.longitude)) * Math.cos(Math.toRadians(that.longitude)));
-
-		return Math.sqrt(summand1 + summand2 - summand3);
-	}
-
 	@Override
 	public CartesianCoordinate asCartesianCoordinate() {
 		double x = radius * Math.sin(Math.toRadians(longitude)) * Math.cos(Math.toRadians(latitude));
@@ -143,24 +127,6 @@ public class SphericCoordinate extends AbstractCoordinate{
 	public SphericCoordinate asSphericCoordinate() {
 		return new SphericCoordinate(this);
 	}
-
-	@Override
-	public double getCartesianDistance(Coordinate c) {
-		return this.asCartesianCoordinate().getDistance(c);
-	}
-
-	@Override
-	public double getSphericDistance(Coordinate c) {
-		return this.getDistance(c);
-	}
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Coordinate)) {
-            return false;
-        }
-        return this.isEqual((Coordinate) o);
-    }
 
 	@Override
 	public boolean isEqual(Coordinate c) {
@@ -190,9 +156,9 @@ public class SphericCoordinate extends AbstractCoordinate{
 	}
     
 	/**
+	 * checks if radius is a correct value > 0
 	 * @methodtype assertion
 	 */
-	//checks if radius is a correct value > 0
 	private void assertRadius(double radius) {
 		if(radius < 0) {
 			throw new IllegalArgumentException("The longitude is smaller than zero.");
@@ -200,9 +166,9 @@ public class SphericCoordinate extends AbstractCoordinate{
 	}
 	
 	/**
+	 * checks if longitude is a correct value in [-180, 180]
 	 * @methodtype assertion
 	 */
-    //checks if longitude is a correct value in [-180, 180]
 	private void assertLongitude(double longitude) {
 		if(longitude < SphericCoordinate.minLongitude ||
 				longitude > SphericCoordinate.maxLongitude) {
@@ -211,9 +177,9 @@ public class SphericCoordinate extends AbstractCoordinate{
 	}
 
 	/**
+	 * checks if latitude is a correct value in [-90, 90]
 	 * @methodtype assertion
 	 */
-	//checks if latitude is a correct value in [-90, 90]
 	private void assertLatitude(double latitude) {
 		if(latitude < SphericCoordinate.minLattitude ||
 				latitude > SphericCoordinate.maxLattitude) {

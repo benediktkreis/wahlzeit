@@ -1,4 +1,4 @@
-/*Class name: AbstractCoordinate.java
+/**Class name: AbstractCoordinate.java
  * 
  * Version: 1.0
  * 
@@ -29,11 +29,13 @@ package org.wahlzeit.model;
 
 public abstract class AbstractCoordinate implements Coordinate{
 	
-	public AbstractCoordinate() {
-		
-	}
+	private double x;
+	private double y;
+	private double z;
 	
-	//declaration of globally used Epsilon parameter
+	/**
+	 * declaration of globally used Epsilon parameter
+	 */
 	public static final double Epsilon = 0.0001;
 	
 	/**
@@ -45,45 +47,56 @@ public abstract class AbstractCoordinate implements Coordinate{
     }
     
 	/**
+	 * spheric coordinates
 	 * @methodtype conversion
 	 */
-	//spheric coordinates
 	public abstract SphericCoordinate asSphericCoordinate();
 	  
 	/** 
+	 * cartesian coordinates
 	 * @methodtype conversion
 	 */
-	//cartesian coordinates
 	public abstract CartesianCoordinate asCartesianCoordinate();
 		
 	/**
+	 * isEqual()
 	 * @methodtype boolean-query.
 	 */
-	//isEqual()
 	public boolean isEqual(Coordinate c) {
 		if (c != null) {
 			return isDoubleEqual(this.getDistance(c), 0.0);
 		}
 		return false;
 	}
-	  
-	/**
-	 * @methodtype query-method
-	 */
-	//gets the distance between 2 coordinates
-	public abstract double getDistance(Coordinate c);
-	 
-	/**
-	 * @methodtype query-method
-	 */
-	//gets the distance between 2 cartesian coordinates
-	public abstract double getCartesianDistance(Coordinate c);
-	 
-	/**
-	 * @methodtype query-method
-	 */
-	//gets the distance between 2 sphericcoordinates
-	public abstract double getSphericDistance(Coordinate c);
 	
+    //@Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Coordinate)) {
+            return false;
+        }
+        return this.isEqual((Coordinate) o);
+    }
+	 
+	public double getDistance(Coordinate c) {
+    	CartesianCoordinate that = c.asCartesianCoordinate();
+    	
+        double deltaX = that.getX() - this.getX();
+        double deltaY = that.getY() - this.getY();
+        double deltaZ = that.getZ() - this.getZ();
+        return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+    }
 
+	protected double getX() {
+		return x;
+	}
+
+	protected double getY() {
+		return y;
+	}
+
+	protected double getZ() {
+		return z;
+	}
+	
+	
 }
