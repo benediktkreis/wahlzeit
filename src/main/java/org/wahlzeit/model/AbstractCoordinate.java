@@ -63,6 +63,7 @@ public abstract class AbstractCoordinate implements Coordinate{
 	 * @methodtype boolean-query.
 	 */
 	public boolean isEqual(Coordinate c) {
+		assertNotNull(c, AbstractCoordinate.class.getName(), "isEqual()");
 		if (c != null) {
 			return isDoubleEqual(this.getDistance(c), 0.0);
 		}
@@ -71,6 +72,7 @@ public abstract class AbstractCoordinate implements Coordinate{
 	
     //@Override
     public boolean equals(Object o) {
+    	assertNotNull(o, AbstractCoordinate.class.getName(), "equals()");
         if (!(o instanceof Coordinate)) {
             return false;
         }
@@ -83,6 +85,9 @@ public abstract class AbstractCoordinate implements Coordinate{
         double deltaX = that.getX() - this.getX();
         double deltaY = that.getY() - this.getY();
         double deltaZ = that.getZ() - this.getZ();
+        
+        assertNotNull(c, AbstractCoordinate.class.getName(), "getDistance()");
+        
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
     }
 
@@ -98,5 +103,14 @@ public abstract class AbstractCoordinate implements Coordinate{
 		return z;
 	}
 	
+	/**
+	 * Checks for null objects
+	 * @methodtyp assertion
+	 */
+	void assertNotNull(Object o, String className, String method) {
+		if(o == null) {
+			throw new IllegalArgumentException("Illegal null object in class: " + className + "; method: " + method);
+		}
+	}
 	
 }

@@ -47,6 +47,8 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @methodtype constructor
 	 */
 	public SphericCoordinate(double latitude, double longitude, double radius) {
+		assertClassInvariants(longitude, latitude, radius);
+		
 		setLatitude(latitude);
 		setLongitude(longitude);
 		setRadius(radius);
@@ -59,6 +61,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 */
 	public SphericCoordinate(SphericCoordinate coordinate) {
 		this(coordinate.latitude, coordinate.longitude, coordinate.radius);
+		assertNotNull(coordinate, SphericCoordinate.class.getName(), "SphericCoordinate()");
 	}
 
 	/**
@@ -117,6 +120,8 @@ public class SphericCoordinate extends AbstractCoordinate{
 
 	@Override
 	public CartesianCoordinate asCartesianCoordinate() {
+		assertClassInvariants(longitude, latitude, radius);
+		
 		double x = radius * Math.sin(Math.toRadians(longitude)) * Math.cos(Math.toRadians(latitude));
 		double y = radius * Math.sin(Math.toRadians(longitude)) * Math.sin(Math.toRadians(latitude));
 		double z = radius * Math.cos(Math.toRadians(longitude));
@@ -130,6 +135,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 
 	@Override
 	public boolean isEqual(Coordinate c) {
+		assertNotNull(c, SphericCoordinate.class.getName(), "isEqual()");
     	if(c == null) {
     		return false;
     	}
@@ -187,5 +193,13 @@ public class SphericCoordinate extends AbstractCoordinate{
 		}
 	}
 	
-
+	/**
+	 * @methodtype assertion
+	 */
+	private void assertClassInvariants(double longitude, double latitude, double radius) {
+		assertLongitude(longitude);
+		assertLatitude(latitude);
+		assertRadius(radius);
+	}
+	
 }

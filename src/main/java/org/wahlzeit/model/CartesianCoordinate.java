@@ -47,10 +47,14 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		
+		assertClassInvariants();
 	}
 	
     public CartesianCoordinate(CartesianCoordinate coordinate) {
         this(coordinate.x, coordinate.y, coordinate.z);
+        assertNotNull(coordinate, CartesianCoordinate.class.getName(), "CartesianCoordinate()");
+        assertClassInvariants();
     }
     
     /**
@@ -64,6 +68,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
      * @methodtype set
      */
     public void setX(double x) {
+    	assertClassInvariants();
         this.x = x;
     }
 
@@ -78,6 +83,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
      * @methodtype set
      */
     public void setY(double y) {
+    	assertClassInvariants();
         this.y = y;
     }
 
@@ -92,6 +98,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
      * @methodtype set
      */
     public void setZ(double z) {
+    	assertClassInvariants();
         this.z = z;
     }
 
@@ -100,19 +107,6 @@ public class CartesianCoordinate extends AbstractCoordinate{
         return new CartesianCoordinate(this);
     }
     
-    /**
-     * Calculates the cartesian distance between this and the given coordinate.
-     */
-  /*  @Override
-	public double getDistance(Coordinate c) {
-    	CartesianCoordinate that = c.asCartesianCoordinate();
-    	
-        double deltaX = that.getX() - this.getX();
-        double deltaY = that.getY() - this.getY();
-        double deltaZ = that.getZ() - this.getZ();
-        return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
-    }
-*/
     @Override
     public SphericCoordinate asSphericCoordinate() {
         double radius = Math.sqrt(x * x + y * y + z * z);
@@ -125,11 +119,15 @@ public class CartesianCoordinate extends AbstractCoordinate{
     }
 
     public double getCartesianDistance(Coordinate c) {
-        return this.getDistance(c);
+    	assertNotNull(c, CartesianCoordinate.class.getName(), "getCartesianDistance()");
+    	return this.getDistance(c);
+        
     }
 
     @Override
     public boolean isEqual(Coordinate c) {
+    	assertNotNull(c, CartesianCoordinate.class.getName(), "isEqual()");
+
         if(c == null) {
             return false;
         }
@@ -153,4 +151,10 @@ public class CartesianCoordinate extends AbstractCoordinate{
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
+    
+	private void assertClassInvariants() {
+		assert x < Double.MAX_VALUE && x > Double.MIN_VALUE;
+		assert y < Double.MAX_VALUE && y > Double.MIN_VALUE;
+		assert z < Double.MAX_VALUE && z > Double.MIN_VALUE;
+	}
 }
