@@ -52,10 +52,7 @@ public interface Coordinate {
 	 * @methodtype query-method
 	 */
 	public double getDistance(Coordinate c);
-	 
-	/**
-	 * gets the distance between 2 cartesian coordinates
-	 * @methodtype query-method
-	 */
 	
+
+
 }

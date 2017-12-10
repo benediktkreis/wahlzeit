@@ -34,12 +34,34 @@ public class Location {
 	
 	//constructor for a coordinate
 	public Location (Coordinate co) {
+		assertNotNull(co, AbstractCoordinate.class.getName(), "Location");
+		assertCoordinateObject(co, AbstractCoordinate.class.getName(), "Location");
 		coordinates = co;
 	}
 	
 	//constructor for a coordinate with x,y,z information
 	public Location (double x, double y, double z) {
-		coordinates = new CartesianCoordinate (x,y,z);
+		
+		assert x < Double.MAX_VALUE && x > Double.MIN_VALUE;
+		assert y < Double.MAX_VALUE && y > Double.MIN_VALUE;
+		assert z < Double.MAX_VALUE && z > Double.MIN_VALUE;
+		
+		if (!Double.isNaN(x)||!Double.isNaN(y)||!Double.isNaN(z)) {
+			coordinates = new CartesianCoordinate (x,y,z);
+		}
+	}
+	
+	public void assertNotNull(Object o, String className, String method) {
+		if(o == null) {
+			//Exception already exists
+			throw new IllegalArgumentException("Illegal null object in class: " + className + "; method: " + method);
+		}
+	}
+	
+	public void assertCoordinateObject(Object o, String className, String method) { 
+	if (!(o instanceof Coordinate)) { 
+		throw new IllegalArgumentException("Not a Coordinate object" + className + "; method: " + method);
+		} 
 	}
 	
 }

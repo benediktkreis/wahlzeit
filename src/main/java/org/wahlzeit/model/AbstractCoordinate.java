@@ -41,9 +41,14 @@ public abstract class AbstractCoordinate implements Coordinate{
 	/**
 	 * @methodtype query
 	 */
-    public static boolean isDoubleEqual(double d1, double d2) {
+    public static boolean isDoubleEqual(double d1, double d2) throws IllegalArgumentException {
+		if (Double.isNaN(d1)||Double.isNaN(d2)) {
+			throw new IllegalArgumentException("d1 or d2 is not a number.");
+		}
+		
         double difference = d1 - d2;
         return Math.abs(difference) < Epsilon;
+		
     }
     
 	/**
@@ -64,6 +69,7 @@ public abstract class AbstractCoordinate implements Coordinate{
 	 */
 	public boolean isEqual(Coordinate c) {
 		assertNotNull(c, AbstractCoordinate.class.getName(), "isEqual()");
+		assertCoordinateObject(c, AbstractCoordinate.class.getName(), "isEqual()");
 		if (c != null) {
 			return isDoubleEqual(this.getDistance(c), 0.0);
 		}
@@ -81,14 +87,13 @@ public abstract class AbstractCoordinate implements Coordinate{
 	 
 	public double getDistance(Coordinate c) {
 		assertNotNull(c, AbstractCoordinate.class.getName(), "getDistance()");
+		assertCoordinateObject(c, AbstractCoordinate.class.getName(), "getDistance()");
 		
 		CartesianCoordinate that = c.asCartesianCoordinate();
     	
         double deltaX = that.getX() - this.getX();
         double deltaY = that.getY() - this.getY();
         double deltaZ = that.getZ() - this.getZ();
-        
-        
         
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
     }
@@ -109,11 +114,17 @@ public abstract class AbstractCoordinate implements Coordinate{
 	 * Checks for null objects
 	 * @methodtyp assertion
 	 */
-	void assertNotNull(Object o, String className, String method) {
+	public void assertNotNull(Object o, String className, String method) {
 		if(o == null) {
 			//Exception already exists
 			throw new IllegalArgumentException("Illegal null object in class: " + className + "; method: " + method);
 		}
 	}
+	
+	public void assertCoordinateObject(Object o, String className, String method) { 
+	if (!(o instanceof Coordinate)) { 
+		throw new IllegalArgumentException("Not a Coordinate object" + className + "; method: " + method);
+		} 
+	} 
 	
 }
