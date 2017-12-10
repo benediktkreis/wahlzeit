@@ -1,10 +1,10 @@
 /**Class name: SphericCoordinate.java
  * 
- * Version: 1.1
+ * Version: 1.2
  * 
  * Creation date: 19/11/2017
  * 
- * Last change date: 26/11/2017
+ * Last change date: 10/12/2017
  * 
  * Copyright (c) 2017 by Benedikt Kreis
  *
@@ -167,7 +167,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 */
 	private void assertRadius(double radius) {
 		if(radius < 0) {
-			throw new IllegalArgumentException("The longitude is smaller than zero.");
+			throw new IllegalArgumentException("The radius is smaller than zero. It has to be greater than zero or equal.");
 		}
 	}
 	
@@ -200,6 +200,17 @@ public class SphericCoordinate extends AbstractCoordinate{
 		assertLongitude(longitude);
 		assertLatitude(latitude);
 		assertRadius(radius);
+		
+		if (Double.isNaN(longitude)) {
+		throw new IllegalArgumentException("Longitude is not a number.");
+		}
+		if (Double.isNaN(latitude)) {
+		throw new IllegalArgumentException("Latitude is not a number.");
+		}
+		if (Double.isNaN(radius)) {
+		throw new IllegalArgumentException("Radius is not a number.");
+		}
+		
 	}
 	
 }

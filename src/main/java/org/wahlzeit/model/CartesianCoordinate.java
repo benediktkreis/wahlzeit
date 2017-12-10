@@ -1,10 +1,10 @@
 /**Class name: CartesianCoordinate.java
  * 
- * Version: 1.1
+ * Version: 1.2
  * 
  * Creation date: 19/11/2017
  * 
- * Last change date: 26/11/2017
+ * Last change date: 10/12/2017
  * 
  * Copyright (c) 2017 by Benedikt Kreis
  *
@@ -156,5 +156,15 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		assert x < Double.MAX_VALUE && x > Double.MIN_VALUE;
 		assert y < Double.MAX_VALUE && y > Double.MIN_VALUE;
 		assert z < Double.MAX_VALUE && z > Double.MIN_VALUE;
+		
+		if (Double.isNaN(x)) {
+		throw new IllegalArgumentException("x is not a number.");
+		}
+		if (Double.isNaN(y)) {
+		throw new IllegalArgumentException("y is not a number.");
+		}
+		if (Double.isNaN(z)) {
+		throw new IllegalArgumentException("z is not a number.");
+		}
 	}
 }

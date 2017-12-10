@@ -87,11 +87,6 @@ public class CartesianCoordinateTest {
     }
 
     @Test
-    public void testIsEqualNull() {
-        assertFalse(coordinateXYZ.isEqual(null));
-    }
-
-    @Test
     public void testIsEqualSelf() {
         assertTrue(coordinateXYZ.isEqual(coordinateXYZ));
     }

@@ -80,13 +80,15 @@ public abstract class AbstractCoordinate implements Coordinate{
     }
 	 
 	public double getDistance(Coordinate c) {
-    	CartesianCoordinate that = c.asCartesianCoordinate();
+		assertNotNull(c, AbstractCoordinate.class.getName(), "getDistance()");
+		
+		CartesianCoordinate that = c.asCartesianCoordinate();
     	
         double deltaX = that.getX() - this.getX();
         double deltaY = that.getY() - this.getY();
         double deltaZ = that.getZ() - this.getZ();
         
-        assertNotNull(c, AbstractCoordinate.class.getName(), "getDistance()");
+        
         
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
     }

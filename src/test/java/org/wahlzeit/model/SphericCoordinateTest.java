@@ -117,11 +117,6 @@ public class SphericCoordinateTest {
     }
 
     @Test
-    public void testIsEqualNull() {
-        assertFalse(defaultCoordinate.isEqual(null));
-    }
-
-    @Test
     public void testIsEqualSelf() {
         assertTrue(defaultCoordinate.isEqual(defaultCoordinate));
     }
@@ -142,5 +137,11 @@ public class SphericCoordinateTest {
     public void testAsSphericCoordinate() {
         assertEquals(defaultCoordinate, defaultCoordinate.asSphericCoordinate());
     }
+    
+
+
+
+
+
     
 }
