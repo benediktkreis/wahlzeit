@@ -167,6 +167,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 */
 	private void assertRadius(double radius) {
 		if(radius < 0) {
+			//Exception already exists
 			throw new IllegalArgumentException("The radius is smaller than zero. It has to be greater than zero or equal.");
 		}
 	}
@@ -178,6 +179,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	private void assertLongitude(double longitude) {
 		if(longitude < SphericCoordinate.minLongitude ||
 				longitude > SphericCoordinate.maxLongitude) {
+			//Exception already exists
 			throw new IllegalArgumentException("The longitude is out of range [-180,180].");
 		}
 	}
@@ -189,6 +191,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	private void assertLatitude(double latitude) {
 		if(latitude < SphericCoordinate.minLattitude ||
 				latitude > SphericCoordinate.maxLattitude) {
+			//Exception already exists
 			throw new IllegalArgumentException("The latitude is out of range [-90, 90].");
 		}
 	}
@@ -201,6 +204,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 		assertLatitude(latitude);
 		assertRadius(radius);
 		
+		//Exception already exists
 		if (Double.isNaN(longitude)) {
 		throw new IllegalArgumentException("Longitude is not a number.");
 		}

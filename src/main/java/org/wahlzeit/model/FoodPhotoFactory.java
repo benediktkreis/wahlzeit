@@ -46,7 +46,13 @@ public class FoodPhotoFactory extends PhotoFactory{
 	
 	//initializes instance
 	public static void initialize() {
-		getInstance();
+		if (instance != null) {
+			getInstance();
+		}
+		else {
+			throw new IllegalStateException("FoodPhotoFactory is null.");
+		}
+		
 	}
 
 	/**
@@ -57,6 +63,9 @@ public class FoodPhotoFactory extends PhotoFactory{
 		if (instance == null) {
 			setInstance(new FoodPhotoFactory());
 		}
+		else {
+			throw new IllegalStateException("FoodPhotoFactory is already set.");
+		}
 		return instance;
 	}
 
@@ -66,6 +75,7 @@ public class FoodPhotoFactory extends PhotoFactory{
 	//sets instance
 	protected static synchronized void setInstance(FoodPhotoFactory foodPhotoFactoryInstance) {
 		if (instance != null) {
+			//Exception already exists
 			throw new IllegalStateException("There was an attempt to initalize FoodPhotoFactory more than once");
 		}
 		

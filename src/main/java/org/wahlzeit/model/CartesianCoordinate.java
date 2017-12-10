@@ -157,6 +157,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		assert y < Double.MAX_VALUE && y > Double.MIN_VALUE;
 		assert z < Double.MAX_VALUE && z > Double.MIN_VALUE;
 		
+		//Exception already exists
 		if (Double.isNaN(x)) {
 		throw new IllegalArgumentException("x is not a number.");
 		}

@@ -111,6 +111,7 @@ public abstract class AbstractCoordinate implements Coordinate{
 	 */
 	void assertNotNull(Object o, String className, String method) {
 		if(o == null) {
+			//Exception already exists
 			throw new IllegalArgumentException("Illegal null object in class: " + className + "; method: " + method);
 		}
 	}
