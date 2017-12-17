@@ -68,8 +68,8 @@ public class CartesianCoordinate extends AbstractCoordinate{
      * @methodtype set
      */
     public void setX(double x) {
-    	assertClassInvariants();
         this.x = x;
+        assertClassInvariants();
     }
 
     /**
@@ -83,8 +83,8 @@ public class CartesianCoordinate extends AbstractCoordinate{
      * @methodtype set
      */
     public void setY(double y) {
-    	assertClassInvariants();
         this.y = y;
+        assertClassInvariants();
     }
 
     /**
@@ -98,8 +98,8 @@ public class CartesianCoordinate extends AbstractCoordinate{
      * @methodtype set
      */
     public void setZ(double z) {
-    	assertClassInvariants();
         this.z = z;
+        assertClassInvariants();
     }
 
     @Override
@@ -110,7 +110,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
     @Override
     public SphericCoordinate asSphericCoordinate() {
         double radius = Math.sqrt(x * x + y * y + z * z);
-        if(isDoubleEqual(radius, 0) || Double.isNaN(radius)) {
+        if(isDoubleEqual(radius, 0) ||  !Double.isFinite(radius)) {
             return new SphericCoordinate(0, 0, 0);
         }
         double latitude = Math.toDegrees(Math.atan2(y, x));
@@ -158,13 +158,13 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		assert z < Double.MAX_VALUE && z > Double.MIN_VALUE;
 		
 		//Exception already exists
-		if (Double.isNaN(x)) {
+		if ( !Double.isFinite(x)) {
 		throw new IllegalArgumentException("x is not a number.");
 		}
-		if (Double.isNaN(y)) {
+		if ( !Double.isFinite(y)) {
 		throw new IllegalArgumentException("y is not a number.");
 		}
-		if (Double.isNaN(z)) {
+		if ( !Double.isFinite(z)) {
 		throw new IllegalArgumentException("z is not a number.");
 		}
 	}

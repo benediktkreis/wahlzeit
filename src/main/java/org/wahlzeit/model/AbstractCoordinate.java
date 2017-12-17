@@ -42,7 +42,7 @@ public abstract class AbstractCoordinate implements Coordinate{
 	 * @methodtype query
 	 */
     public static boolean isDoubleEqual(double d1, double d2) throws IllegalArgumentException {
-		if (Double.isNaN(d1)||Double.isNaN(d2)) {
+		if ( !Double.isFinite(d1)|| !Double.isFinite(d2)) {
 			throw new IllegalArgumentException("d1 or d2 is not a number.");
 		}
 		

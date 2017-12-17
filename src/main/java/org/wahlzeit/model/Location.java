@@ -46,7 +46,7 @@ public class Location {
 		assert y < Double.MAX_VALUE && y > Double.MIN_VALUE;
 		assert z < Double.MAX_VALUE && z > Double.MIN_VALUE;
 		
-		if (!Double.isNaN(x)||!Double.isNaN(y)||!Double.isNaN(z)) {
+		if (Double.isFinite(x)||Double.isFinite(y)||Double.isFinite(z)) {
 			coordinates = new CartesianCoordinate (x,y,z);
 		}
 	}

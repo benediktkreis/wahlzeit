@@ -50,11 +50,11 @@ public class FoodPhoto extends Photo {
 	//default constructor (if there is no photo)
 	public FoodPhoto(String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
 		super();
-		assertClassInvariants();
 		this.cuisine = cuisine;
 		this.vegetarian = vegetarian;
 		this.vegan = vegan;
 		this.spicinessIndicator = spicinessIndicator;
+		assertClassInvariants();
 	}
 	
 	/**
@@ -63,11 +63,11 @@ public class FoodPhoto extends Photo {
 	//constructor (if there is a photo) 
 	public FoodPhoto(PhotoId myID, String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
 		super(myID);
-		assertClassInvariants();
 		this.cuisine = cuisine;
 		this.vegetarian = vegetarian;
 		this.vegan = vegan;
 		this.spicinessIndicator = spicinessIndicator;
+		assertClassInvariants();
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class FoodPhoto extends Photo {
 	private void assertClassInvariants() {
 		assert spicinessIndicator < Integer.MAX_VALUE && spicinessIndicator > Integer.MIN_VALUE;
 		
-		if (Double.isNaN(spicinessIndicator)) {
+		if (!Double.isFinite(spicinessIndicator)) {
 		throw new IllegalArgumentException("SpicinessIndicator is not a number.");
 		}
 	}

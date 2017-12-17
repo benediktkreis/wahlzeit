@@ -47,11 +47,11 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @methodtype constructor
 	 */
 	public SphericCoordinate(double latitude, double longitude, double radius) {
-		assertClassInvariants(longitude, latitude, radius);
-		
 		setLatitude(latitude);
 		setLongitude(longitude);
 		setRadius(radius);
+		
+		assertClassInvariants(longitude, latitude, radius);
 	}
 
 	/**
@@ -84,8 +84,8 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @methodtype set
 	 */
 	public void setLongitude(double longitude) {
-		assertLongitude(longitude);
 		this.longitude = longitude;
+		assertLongitude(longitude);
 	}
 
 	/**
@@ -99,8 +99,8 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @methodtype set
 	 */
 	public void setLatitude(double latitude) {
-		assertLatitude(latitude);
 		this.latitude = latitude;
+		assertLatitude(latitude);
 	}
 
 	/**
@@ -114,17 +114,17 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @methodtype set
 	 */
 	public void setRadius(double radius) {
-		assertRadius(radius);
 		this.radius = radius;
+		assertRadius(radius);
 	}
 
 	@Override
-	public CartesianCoordinate asCartesianCoordinate() {
-		assertClassInvariants(longitude, latitude, radius);
-		
+	public CartesianCoordinate asCartesianCoordinate()
+	{
 		double x = radius * Math.sin(Math.toRadians(longitude)) * Math.cos(Math.toRadians(latitude));
 		double y = radius * Math.sin(Math.toRadians(longitude)) * Math.sin(Math.toRadians(latitude));
 		double z = radius * Math.cos(Math.toRadians(longitude));
+		assertClassInvariants(longitude, latitude, radius);
 		return new CartesianCoordinate(x, y, z);
 	}
 
@@ -205,13 +205,13 @@ public class SphericCoordinate extends AbstractCoordinate{
 		assertRadius(radius);
 		
 		//Exception already exists
-		if (Double.isNaN(longitude)) {
+		if (!Double.isFinite(longitude)) {
 		throw new IllegalArgumentException("Longitude is not a number.");
 		}
-		if (Double.isNaN(latitude)) {
+		if (!Double.isFinite(latitude)) {
 		throw new IllegalArgumentException("Latitude is not a number.");
 		}
-		if (Double.isNaN(radius)) {
+		if (!Double.isFinite(radius)) {
 		throw new IllegalArgumentException("Radius is not a number.");
 		}
 		
