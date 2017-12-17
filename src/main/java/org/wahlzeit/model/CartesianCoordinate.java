@@ -27,145 +27,146 @@
 
 package org.wahlzeit.model;
 
+import java.util.HashMap;
+import java.util.Map;
 
+public final class CartesianCoordinate extends AbstractCoordinate {
 
-public class CartesianCoordinate extends AbstractCoordinate{
-	
 	/**
 	 * declaration of cartesian coordinates
 	 */
-	private double x;
-	private double y;
-	private double z;
+	private final double x;
+	private final double y;
+	private final double z;
 
-    
+	private static final Map<String, CartesianCoordinate> sharedCoordinateMap = new HashMap<String, CartesianCoordinate>();
+
+	public static synchronized CartesianCoordinate create(double x, double y, double z) {
+		CartesianCoordinate checkedCoordinate = sharedCoordinateMap.get(toString(x, y, z));
+
+		if (null == checkedCoordinate) {
+			CartesianCoordinate createCoordinate = new CartesianCoordinate(x, y, z);
+			sharedCoordinateMap.put(createCoordinate.toString(), createCoordinate);
+			return createCoordinate;
+		}
+
+		return checkedCoordinate;
+	}
+
 	/**
 	 * initialization of cartesian coordinates
+	 * 
 	 * @methodtype Constructor
 	 */
-	public CartesianCoordinate (double x, double y, double z){
+
+	CartesianCoordinate(double x, double y, double z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		
+
 		assertClassInvariants();
 	}
-	
-    public CartesianCoordinate(CartesianCoordinate coordinate) {
-        this(coordinate.x, coordinate.y, coordinate.z);
-        assertNotNull(coordinate, CartesianCoordinate.class.getName(), "CartesianCoordinate()");
-        assertClassInvariants();
-    }
-    
-    /**
-     * @methodtype get
-     */
-    public double getX() {
-        return x;
-    }
 
-    /**
-     * @methodtype set
-     */
-    public void setX(double x) {
-        this.x = x;
-        assertClassInvariants();
-    }
+	public CartesianCoordinate(CartesianCoordinate coordinate) {
+		this(coordinate.x, coordinate.y, coordinate.z);
+		assertNotNull(coordinate, CartesianCoordinate.class.getName(), "CartesianCoordinate()");
+		assertClassInvariants();
+	}
 
-    /**
-     * @methodtype get
-     */
-    public double getY() {
-        return y;
-    }
+	/**
+	 * @methodtype get
+	 */
+	public double getX() {
+		return x;
+	}
 
-    /**
-     * @methodtype set
-     */
-    public void setY(double y) {
-        this.y = y;
-        assertClassInvariants();
-    }
+	/**
+	 * @methodtype get
+	 */
+	public double getY() {
+		return y;
+	}
 
-    /**
-     * @methodtype get
-     */
-    public double getZ() {
-        return z;
-    }
+	/**
+	 * @methodtype get
+	 */
+	public double getZ() {
+		return z;
+	}
 
-    /**
-     * @methodtype set
-     */
-    public void setZ(double z) {
-        this.z = z;
-        assertClassInvariants();
-    }
+	@Override
+	public String toString() {
+		return toString(x, y, z);
+	}
 
-    @Override
-    public CartesianCoordinate asCartesianCoordinate() {
-        return new CartesianCoordinate(this);
-    }
-    
-    @Override
-    public SphericCoordinate asSphericCoordinate() {
-        double radius = Math.sqrt(x * x + y * y + z * z);
-        if(isDoubleEqual(radius, 0) ||  !Double.isFinite(radius)) {
-            return new SphericCoordinate(0, 0, 0);
-        }
-        double latitude = Math.toDegrees(Math.atan2(y, x));
-        double longitude = Math.toDegrees(Math.acos(z / radius));
-        return new SphericCoordinate(latitude, longitude, radius);
-    }
+	private static String toString(double x, double y, double z) {
+		return "CartesianCoordinate{" + "x=" + x + ", y=" + y + ", z=" + z + '}';
+	}
 
-    public double getCartesianDistance(Coordinate c) {
-    	assertNotNull(c, CartesianCoordinate.class.getName(), "getCartesianDistance()");
-    	return this.getDistance(c);
-        
-    }
+	@Override
+	public CartesianCoordinate asCartesianCoordinate() {
+		return new CartesianCoordinate(this);
+	}
 
-    @Override
-    public boolean isEqual(Coordinate c) {
-    	assertNotNull(c, CartesianCoordinate.class.getName(), "isEqual()");
+	@Override
+	public SphericCoordinate asSphericCoordinate() {
+		double radius = Math.sqrt(x * x + y * y + z * z);
+		if (isDoubleEqual(radius, 0) || !Double.isFinite(radius)) {
+			return new SphericCoordinate(0, 0, 0);
+		}
+		double latitude = Math.toDegrees(Math.atan2(y, x));
+		double longitude = Math.toDegrees(Math.acos(z / radius));
+		return new SphericCoordinate(latitude, longitude, radius);
+	}
 
-        if(c == null) {
-            return false;
-        }
-        if (this == c) {
-            return true;
-        }
-        CartesianCoordinate that = c.asCartesianCoordinate();
+	public double getCartesianDistance(Coordinate c) {
+		assertNotNull(c, CartesianCoordinate.class.getName(), "getCartesianDistance()");
+		return this.getDistance(c);
 
-        return isDoubleEqual(this.x, that.x) && isDoubleEqual(this.y, that.y) && isDoubleEqual(this.z, that.z);
-    }
+	}
 
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(x);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(y);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(z);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
-    
+	@Override
+	public boolean isEqual(Coordinate c) {
+		assertNotNull(c, CartesianCoordinate.class.getName(), "isEqual()");
+
+		if (c == null) {
+			return false;
+		}
+		if (this == c) {
+			return true;
+		}
+		CartesianCoordinate that = c.asCartesianCoordinate();
+
+		return isDoubleEqual(this.x, that.x) && isDoubleEqual(this.y, that.y) && isDoubleEqual(this.z, that.z);
+	}
+
+	@Override
+	public int hashCode() {
+		int result;
+		long temp;
+		temp = Double.doubleToLongBits(x);
+		result = (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(y);
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(z);
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
 	private void assertClassInvariants() {
 		assert x < Double.MAX_VALUE && x > Double.MIN_VALUE;
 		assert y < Double.MAX_VALUE && y > Double.MIN_VALUE;
 		assert z < Double.MAX_VALUE && z > Double.MIN_VALUE;
-		
-		//Exception already exists
-		if ( !Double.isFinite(x)) {
-		throw new IllegalArgumentException("x is not a number.");
+
+		// Exception already exists
+		if (!Double.isFinite(x)) {
+			throw new IllegalArgumentException("x is not a number.");
 		}
-		if ( !Double.isFinite(y)) {
-		throw new IllegalArgumentException("y is not a number.");
+		if (!Double.isFinite(y)) {
+			throw new IllegalArgumentException("y is not a number.");
 		}
-		if ( !Double.isFinite(z)) {
-		throw new IllegalArgumentException("z is not a number.");
+		if (!Double.isFinite(z)) {
+			throw new IllegalArgumentException("z is not a number.");
 		}
 	}
 }

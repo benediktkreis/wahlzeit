@@ -33,115 +33,74 @@ import static org.junit.Assert.*;
 
 public class SphericCoordinateTest {
 
-    double latitude;
-    double longitude;
-    double radius;
-    static final double Epsilon = 0.0001;
-    SphericCoordinate defaultCoordinate;
+	double latitude;
+	double longitude;
+	double radius;
+	static final double Epsilon = 0.0001;
+	SphericCoordinate defaultCoordinate;
 
-    @Before
-    public void setUp() {
-        latitude = 1.;
-        longitude = 2.;
-        radius = 3.;
-        defaultCoordinate = new SphericCoordinate(latitude, longitude, radius);
-    }
+	@Before
+	public void setUp() {
+		latitude = 1.;
+		longitude = 2.;
+		radius = 3.;
+		defaultCoordinate = new SphericCoordinate(latitude, longitude, radius);
+	}
 
-    @Test
-    public void testConstructor() {
-        assertEquals(latitude, defaultCoordinate.getLatitude(), Epsilon);
-        assertEquals(longitude, defaultCoordinate.getLongitude(), Epsilon);
-        assertEquals(radius, defaultCoordinate.getRadius(), Epsilon);
-    }
-    
-    public void testConstructorDefaultRadius() {
-    	SphericCoordinate coordinate = new SphericCoordinate(latitude, longitude);
-    	assertNotEquals(0, coordinate.getRadius(), Epsilon);
-    }
+	@Test
+	public void testConstructor() {
+		assertEquals(latitude, defaultCoordinate.getLatitude(), Epsilon);
+		assertEquals(longitude, defaultCoordinate.getLongitude(), Epsilon);
+		assertEquals(radius, defaultCoordinate.getRadius(), Epsilon);
+	}
 
-    @Test
-    public void testSetterAndGetterValid() {
-        defaultCoordinate.setLatitude(latitude + 1);
-        defaultCoordinate.setLongitude(longitude + 1);
-        defaultCoordinate.setRadius(radius + 1);
-        assertEquals(latitude + 1, defaultCoordinate.getLatitude(), Epsilon);
-        assertEquals(longitude + 1, defaultCoordinate.getLongitude(), Epsilon);
-        assertEquals(radius + 1, defaultCoordinate.getRadius(), Epsilon);
-    }
-    
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetLatitudeInvalidTooSmall() {
-    	defaultCoordinate.setLatitude(-180.01);
-    }
-    
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetLatitudeInvalidTooGreat() {
-    	defaultCoordinate.setLatitude(180.01);
-    }
-    
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetLongitudeInvalidTooSmall() {
-    	defaultCoordinate.setLatitude(-90.01);
-    }
-    
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetLongitudeInvalidTooGreat() {
-    	defaultCoordinate.setLatitude(90.01);
-    }
-    
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetRadiusInvalidSmallerZero() {
-    	defaultCoordinate.setRadius(-0.01);
-    }
+	public void testConstructorDefaultRadius() {
+		SphericCoordinate coordinate = new SphericCoordinate(latitude, longitude);
+		assertNotEquals(0, coordinate.getRadius(), Epsilon);
+	}
 
-    @Test
-    public void testEqualsNull() {
-        assertNotEquals(null, defaultCoordinate);
-    }
+	@Test
+	public void testEqualsNull() {
+		assertNotEquals(null, defaultCoordinate);
+	}
 
-    @Test
-    public void testEqualsSelf() {
-        assertEquals(defaultCoordinate, defaultCoordinate);
-    }
+	@Test
+	public void testEqualsSelf() {
+		assertEquals(defaultCoordinate, defaultCoordinate);
+	}
 
-    @Test
-    public void testEqualsNotEqualCoordinates() {
-        Coordinate unequalCoordinate = new SphericCoordinate(latitude + 1, longitude + 1, radius + 1);
-        assertNotEquals(unequalCoordinate, defaultCoordinate);
-    }
+	@Test
+	public void testEqualsNotEqualCoordinates() {
+		Coordinate unequalCoordinate = new SphericCoordinate(latitude + 1, longitude + 1, radius + 1);
+		assertNotEquals(unequalCoordinate, defaultCoordinate);
+	}
 
-    @Test
-    public void testEqualsEqualCoordinates() {
-        Coordinate equalCoordinate = new SphericCoordinate(latitude, longitude, radius);
-        assertEquals(equalCoordinate, defaultCoordinate);
-    }
+	@Test
+	public void testEqualsEqualCoordinates() {
+		Coordinate equalCoordinate = new SphericCoordinate(latitude, longitude, radius);
+		assertEquals(equalCoordinate, defaultCoordinate);
+	}
 
-    @Test
-    public void testIsEqualSelf() {
-        assertTrue(defaultCoordinate.isEqual(defaultCoordinate));
-    }
+	@Test
+	public void testIsEqualSelf() {
+		assertTrue(defaultCoordinate.isEqual(defaultCoordinate));
+	}
 
-    @Test
-    public void testIsEqualNotEqualCoordinates() {
-        SphericCoordinate unequalCoordinate = new SphericCoordinate(latitude, radius, longitude);
-        assertFalse(defaultCoordinate.isEqual(unequalCoordinate));
-    }
+	@Test
+	public void testIsEqualNotEqualCoordinates() {
+		SphericCoordinate unequalCoordinate = new SphericCoordinate(latitude, radius, longitude);
+		assertFalse(defaultCoordinate.isEqual(unequalCoordinate));
+	}
 
-    @Test
-    public void testIsEqualEqualCoordinates() {
-        SphericCoordinate equalCoordinate = new SphericCoordinate(latitude, longitude, radius);
-        assertTrue(defaultCoordinate.isEqual(equalCoordinate));
-    }
+	@Test
+	public void testIsEqualEqualCoordinates() {
+		SphericCoordinate equalCoordinate = new SphericCoordinate(latitude, longitude, radius);
+		assertTrue(defaultCoordinate.isEqual(equalCoordinate));
+	}
 
-    @Test
-    public void testAsSphericCoordinate() {
-        assertEquals(defaultCoordinate, defaultCoordinate.asSphericCoordinate());
-    }
-    
+	@Test
+	public void testAsSphericCoordinate() {
+		assertEquals(defaultCoordinate, defaultCoordinate.asSphericCoordinate());
+	}
 
-
-
-
-
-    
 }

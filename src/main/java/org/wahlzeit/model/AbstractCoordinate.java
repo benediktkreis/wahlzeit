@@ -27,44 +27,49 @@
 
 package org.wahlzeit.model;
 
-public abstract class AbstractCoordinate implements Coordinate{
-	
+public abstract class AbstractCoordinate implements Coordinate {
+
 	private double x;
 	private double y;
 	private double z;
-	
+
+	public static final double initial = 0;
+
 	/**
 	 * declaration of globally used Epsilon parameter
 	 */
 	public static final double Epsilon = 0.0001;
-	
+
 	/**
 	 * @methodtype query
 	 */
-    public static boolean isDoubleEqual(double d1, double d2) throws IllegalArgumentException {
-		if ( !Double.isFinite(d1)|| !Double.isFinite(d2)) {
+	public static boolean isDoubleEqual(double d1, double d2) throws IllegalArgumentException {
+		if (!Double.isFinite(d1) || !Double.isFinite(d2)) {
 			throw new IllegalArgumentException("d1 or d2 is not a number.");
 		}
-		
-        double difference = d1 - d2;
-        return Math.abs(difference) < Epsilon;
-		
-    }
-    
+
+		double difference = d1 - d2;
+		return Math.abs(difference) < Epsilon;
+
+	}
+
 	/**
 	 * spheric coordinates
+	 * 
 	 * @methodtype conversion
 	 */
 	public abstract SphericCoordinate asSphericCoordinate();
-	  
-	/** 
+
+	/**
 	 * cartesian coordinates
+	 * 
 	 * @methodtype conversion
 	 */
 	public abstract CartesianCoordinate asCartesianCoordinate();
-		
+
 	/**
 	 * isEqual()
+	 * 
 	 * @methodtype boolean-query.
 	 */
 	public boolean isEqual(Coordinate c) {
@@ -75,29 +80,29 @@ public abstract class AbstractCoordinate implements Coordinate{
 		}
 		return false;
 	}
-	
-    //@Override
-    public boolean equals(Object o) {
-    	assertNotNull(o, AbstractCoordinate.class.getName(), "equals()");
-        if (!(o instanceof Coordinate)) {
-            return false;
-        }
-        return this.isEqual((Coordinate) o);
-    }
-	 
+
+	// @Override
+	public boolean equals(Object o) {
+		assertNotNull(o, AbstractCoordinate.class.getName(), "equals()");
+		if (!(o instanceof Coordinate)) {
+			return false;
+		}
+		return this.isEqual((Coordinate) o);
+	}
+
 	public double getDistance(Coordinate c) {
 		assertNotNull(c, AbstractCoordinate.class.getName(), "getDistance()");
 		assertCoordinateObject(c, AbstractCoordinate.class.getName(), "getDistance()");
-		
-		CartesianCoordinate that = c.asCartesianCoordinate();
-    	
-        double deltaX = that.getX() - this.getX();
-        double deltaY = that.getY() - this.getY();
-        double deltaZ = that.getZ() - this.getZ();
-        
-        return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
-    }
 
+		CartesianCoordinate that = c.asCartesianCoordinate();
+
+		double deltaX = that.getX() - this.getX();
+		double deltaY = that.getY() - this.getY();
+		double deltaZ = that.getZ() - this.getZ();
+
+		return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+	}
+	
 	protected double getX() {
 		return x;
 	}
@@ -109,22 +114,23 @@ public abstract class AbstractCoordinate implements Coordinate{
 	protected double getZ() {
 		return z;
 	}
-	
+
 	/**
 	 * Checks for null objects
+	 * 
 	 * @methodtyp assertion
 	 */
 	public void assertNotNull(Object o, String className, String method) {
-		if(o == null) {
-			//Exception already exists
+		if (o == null) {
+			// Exception already exists
 			throw new IllegalArgumentException("Illegal null object in class: " + className + "; method: " + method);
 		}
 	}
-	
-	public void assertCoordinateObject(Object o, String className, String method) { 
-	if (!(o instanceof Coordinate)) { 
-		throw new IllegalArgumentException("Not a Coordinate object" + className + "; method: " + method);
-		} 
-	} 
-	
+
+	public void assertCoordinateObject(Object o, String className, String method) {
+		if (!(o instanceof Coordinate)) {
+			throw new IllegalArgumentException("Not a Coordinate object" + className + "; method: " + method);
+		}
+	}
+
 }
