@@ -29,7 +29,12 @@ package org.wahlzeit.model;
 
 import java.util.Map;
 import java.util.HashMap;
+import org.wahlzeit.utils.AnnotationUtil;
 
+@AnnotationUtil( 
+		patternName = "Template", 
+		participants = {"Template = AbstractCoordinate", "Implementation = CartesianCoordinate", "Implementation = SphericCoordinate"} 
+)
 public final class SphericCoordinate extends AbstractCoordinate {
 
 	/**

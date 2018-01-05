@@ -1,12 +1,12 @@
-/*Class name: FoodPhotoTest.java
+/**Class name: FoodPhotoTest.java
  * 
- * Version: 1.0
+ * Version: 1.1
  * 
  * Creation date: 12/11/2017
  * 
- * Last change date: 12/11/2017
+ * Last change date: 02/01/2018
  * 
- * Copyright (c) 2017 by Benedikt Kreis
+ * Copyright (c) 2018 by Benedikt Kreis
  *
  * This file is part of the Wahlzeit photo rating application.
  *
@@ -30,6 +30,13 @@ package org.wahlzeit.model;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.wahlzeit.overall.OverallWahlzeitTestSuite;
+import org.wahlzeit.utils.AnnotationUtil;
+
+@AnnotationUtil( 
+		patternName = "Composite", 
+		participants = {"Component = OverallWahlzeitTest.java", "Composite = test suite", "Leaf = test case"} 
+)
 
 public class FoodPhotoTest {
 	

@@ -1,6 +1,6 @@
 /**Class name: AbstractCoordinate.java
  * 
- * Version: 1.0
+ * Version: 1.1
  * 
  * Creation date: 26/11/2017
  * 
@@ -26,6 +26,13 @@
  */
 
 package org.wahlzeit.model;
+
+import org.wahlzeit.utils.AnnotationUtil;
+
+@AnnotationUtil( 
+		patternName = "Template", 
+		participants = {"Template = AbstractCoordinate", "Implementation = CartesianCoordinate", "Implementation = SphericCoordinate"} 
+) 
 
 public abstract class AbstractCoordinate implements Coordinate {
 

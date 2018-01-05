@@ -1,12 +1,12 @@
-/*Class name: FoodPhotoFactory.java
+/**Class name: FoodPhotoFactory.java
  * 
- * Version: 1.0
+ * Version: 1.1
  * 
  * Creation date: 12/11/2017
  * 
- * Last change date: 12/11/2017
+ * Last change date: 02/01/2018
  * 
- * Copyright (c) 2017 by Benedikt Kreis
+ * Copyright (c) 2018 by Benedikt Kreis
  *
  * This file is part of the Wahlzeit photo rating application.
  *
@@ -29,6 +29,12 @@
 package org.wahlzeit.model;
 
 import com.googlecode.objectify.annotation.*;
+import org.wahlzeit.utils.AnnotationUtil;
+
+@AnnotationUtil( 
+		patternName = "Singleton", 
+		participants = {"FoodPhotoFactory instance -> initialize() method", "getInstance() method", "setInstance() method"} 
+)
 
 @Subclass
 public class FoodPhotoFactory extends PhotoFactory{

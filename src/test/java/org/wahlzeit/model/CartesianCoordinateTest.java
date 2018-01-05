@@ -1,4 +1,4 @@
-/*Class name: CartesianCoordinateTest.java
+/**Class name: CartesianCoordinateTest.java
  * 
  * Version: 1.0
  * 
@@ -30,7 +30,12 @@ package org.wahlzeit.model;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.wahlzeit.utils.AnnotationUtil;
 
+@AnnotationUtil( 
+		patternName = "Template", 
+		participants = {"Template = AbstractCoordinate", "Implementation = CartesianCoordinate", "Implementation = SphericCoordinate"} 
+)
 public class CartesianCoordinateTest {
 
 	double x;
