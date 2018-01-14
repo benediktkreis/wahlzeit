@@ -1,6 +1,6 @@
-/**Class name: AnnotationUtil.java
+/**Class name: PatternInstance.java
  * 
- * Version: 1.0
+ * Version: 1.1
  * 
  * Creation date: 02/01/2018
  * 
@@ -31,7 +31,7 @@ package org.wahlzeit.utils;
  * base to document design patterns
  */
 
-public @interface AnnotationUtil {
+public @interface PatternInstance {
 	String patternName(); 
 	String[] participants(); 
 }

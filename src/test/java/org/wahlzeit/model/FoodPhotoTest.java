@@ -31,9 +31,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.wahlzeit.overall.OverallWahlzeitTestSuite;
-import org.wahlzeit.utils.AnnotationUtil;
+import org.wahlzeit.utils.PatternInstance;
 
-@AnnotationUtil( 
+@PatternInstance( 
 		patternName = "Composite", 
 		participants = {"Component = OverallWahlzeitTest.java", "Composite = test suite", "Leaf = test case"} 
 )

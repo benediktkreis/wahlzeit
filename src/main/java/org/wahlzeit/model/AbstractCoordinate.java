@@ -27,9 +27,9 @@
 
 package org.wahlzeit.model;
 
-import org.wahlzeit.utils.AnnotationUtil;
+import org.wahlzeit.utils.PatternInstance;
 
-@AnnotationUtil( 
+@PatternInstance( 
 		patternName = "Template", 
 		participants = {"Template = AbstractCoordinate", "Implementation = CartesianCoordinate", "Implementation = SphericCoordinate"} 
 ) 

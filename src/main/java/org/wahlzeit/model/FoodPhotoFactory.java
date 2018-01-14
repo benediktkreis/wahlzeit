@@ -29,9 +29,9 @@
 package org.wahlzeit.model;
 
 import com.googlecode.objectify.annotation.*;
-import org.wahlzeit.utils.AnnotationUtil;
+import org.wahlzeit.utils.PatternInstance;
 
-@AnnotationUtil( 
+@PatternInstance( 
 		patternName = "Singleton", 
 		participants = {"FoodPhotoFactory instance -> initialize() method", "getInstance() method", "setInstance() method"} 
 )

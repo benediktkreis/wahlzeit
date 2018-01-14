@@ -23,9 +23,9 @@ package org.wahlzeit.model;
 import org.wahlzeit.services.LogBuilder;
 
 import java.util.logging.Logger;
-import org.wahlzeit.utils.AnnotationUtil;
+import org.wahlzeit.utils.PatternInstance;
 
-@AnnotationUtil( 
+@PatternInstance( 
 		patternName = "Singleton", 
 		participants = {"PhotoFactory instance -> initialize() method", "getInstance() method", "setInstance() method"} 
 )
