@@ -1,12 +1,12 @@
-/*Class name: FoodPhoto.java
+/**Class name: FoodPhoto.java
  * 
- * Version: 1.0
+ * Version: 1.1
  * 
  * Creation date: 12/11/2017
  * 
- * Last change date: 12/11/2017
+ * Last change date: 14/01/2018
  * 
- * Copyright (c) 2017 by Benedikt Kreis
+ * Copyright (c) 2018 by Benedikt Kreis
  *
  * This file is part of the Wahlzeit photo rating application.
  *
@@ -33,69 +33,68 @@ import com.googlecode.objectify.annotation.Subclass;
 @Subclass
 public class FoodPhoto extends Photo {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	//declaration of variables
-	protected String cuisine = ""; //e.g. Italian, Chinese,...
-	protected boolean vegetarian = false;// vegetarian yes/no?
-	protected boolean vegan = false;// vegan yes/no?
-	protected int spicinessIndicator = 0;// How spicy is a food from 0-10 (0 = not spicy, 10 = super hot)
+	private static final String defCuisine = ""; //e.g. Italian, Chinese,...
+	private static final boolean defVegetarian = false;// vegetarian yes/no?
+	private static final boolean defVegan = false;// vegan yes/no?
+	private static final int defSpicinessIndicator = 0;// How spicy is a food from 0-10 (0 = not spicy, 10 = super hot)
 	
 	/**
-	 * @methodtype constructor
+	 * @methodtype Constructor
 	 */
-	//default constructor (if there is no photo)
-	public FoodPhoto(String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
-		super();
-		this.cuisine = cuisine;
-		this.vegetarian = vegetarian;
-		this.vegan = vegan;
-		this.spicinessIndicator = spicinessIndicator;
-		assertClassInvariants();
+	public FoodPhoto(PhotoId myId) {
+		super(myId);
+		this.initialize(defCuisine, defVegetarian, defVegan, defSpicinessIndicator);
 	}
 	
 	/**
 	 * @methodtype constructor
 	 */
-	//constructor (if there is a photo) 
 	public FoodPhoto(PhotoId myID, String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
 		super(myID);
-		this.cuisine = cuisine;
-		this.vegetarian = vegetarian;
-		this.vegan = vegan;
-		this.spicinessIndicator = spicinessIndicator;
-		assertClassInvariants();
-	}
-
-	/**
-	 * @methodtype getter
-	 */
-	//generated getters
-	public String getCuisine() {
-		return cuisine;
-	}
-
-	public boolean isVegetarian() {
-		return vegetarian;
-	}
-
-	public boolean isVegan() {
-		return vegan;
-	}
-
-	public int getSpicinessIndicator() {
-		return spicinessIndicator;
+		this.initialize(cuisine, vegetarian, vegan, spicinessIndicator);
 	}
 	
-	private void assertClassInvariants() {
-		assert spicinessIndicator < Integer.MAX_VALUE && spicinessIndicator > Integer.MIN_VALUE;
-		
-		if (!Double.isFinite(spicinessIndicator)) {
-		throw new IllegalArgumentException("SpicinessIndicator is not a number.");
-		}
+	/**
+	 * @methodtype constructor
+	 */
+	public FoodPhoto(String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
+		super();
+		this.initialize(cuisine, vegetarian, vegan, spicinessIndicator);
+	}
+
+
+	/**
+	 * @methodtype constructor
+	 */
+	public FoodPhoto(PhotoId myID, FoodType foodType) {
+		super(myID);
+		this.initialize(foodType);
+	}
+	
+	/**
+	 * @methodtype constructor
+	 */
+	public FoodPhoto(FoodType foodType) {
+		super();
+		this.initialize(foodType);
+	}
+	
+	/**
+	 * @methodtype factory
+	 */
+	public void initialize(String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
+		FoodType type = FoodManager.getInstance().createFoodType(cuisine, vegetarian, vegan, spicinessIndicator);
+		FoodManager.getInstance().createFood(type);
+	}
+	
+	/**
+	 * @methodtype factory
+	 */
+	public void initialize(FoodType type) {
+		FoodManager.getInstance().createFood(type);
 	}
 
 }

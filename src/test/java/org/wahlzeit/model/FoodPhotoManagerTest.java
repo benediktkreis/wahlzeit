@@ -1,12 +1,12 @@
-/*Class name: FoodPhotoManagerTest.java
+/**Class name: FoodPhotoManagerTest.java
  * 
- * Version: 1.0
+ * Version: 1.1
  * 
  * Creation date: 12/11/2017
  * 
- * Last change date: 12/11/2017
+ * Last change date: 14/01/2018
  * 
- * Copyright (c) 2017 by Benedikt Kreis
+ * Copyright (c) 2018 by Benedikt Kreis
  *
  * This file is part of the Wahlzeit photo rating application.
  *

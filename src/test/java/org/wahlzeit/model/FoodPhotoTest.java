@@ -4,7 +4,7 @@
  * 
  * Creation date: 12/11/2017
  * 
- * Last change date: 02/01/2018
+ * Last change date: 14/01/2018
  * 
  * Copyright (c) 2018 by Benedikt Kreis
  *
@@ -30,7 +30,6 @@ package org.wahlzeit.model;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.wahlzeit.overall.OverallWahlzeitTestSuite;
 import org.wahlzeit.utils.PatternInstance;
 
 @PatternInstance( 
@@ -45,7 +44,6 @@ public class FoodPhotoTest {
 	FoodPhoto photo2;
 	FoodPhoto photo3;
 	FoodPhoto photo4;
-	FoodPhoto photo5;
 	PhotoId id;
 		
 	
@@ -55,23 +53,15 @@ public class FoodPhotoTest {
 			id = new PhotoId(4);
 			photo1 = new FoodPhoto("Italian", false, false, 3);
 			photo2 = new FoodPhoto("Chinese", true, false, 10);
-			photo3 = new FoodPhoto("Vietnamese", false, false, 10);
+			photo3 = new FoodPhoto(id, "Mexican", false, false, 8);
 			photo4 = new FoodPhoto(id, "Mexican", false, false, 8);
-			photo5 = new FoodPhoto(id, "Mexican", false, false, 8);
 			
 		}
 		
 		//test case for FoodPhoto
 		@Test
 		public void testPhoto() {
-			assertEquals(photo1.getCuisine(), "Italian");
-			assertEquals(photo1.isVegetarian(), false);
-			assertEquals(photo1.isVegan(), false);
-			assertEquals(photo1.getSpicinessIndicator(), 3);
-			assertEquals(photo2.getSpicinessIndicator(), photo3.getSpicinessIndicator());
-			assertEquals(photo3.isVegetarian(), photo4.isVegetarian());
-			assertEquals(photo2.isVegan(), photo3.isVegan());
-			assertNotEquals(photo1.isVegetarian(), photo2.isVegetarian());
-			assertEquals(photo4.getId(), photo5.getId());
+			assertNotEquals(photo1.getId(), photo2.getId());
+			assertEquals(photo3.getId(), photo4.getId());
 		}
 }

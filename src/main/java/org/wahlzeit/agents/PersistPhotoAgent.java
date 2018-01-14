@@ -1,7 +1,7 @@
 package org.wahlzeit.agents;
 
-import org.wahlzeit.model.Photo;
-import org.wahlzeit.model.PhotoManager;
+import org.wahlzeit.model.FoodPhoto;
+import org.wahlzeit.model.FoodPhotoManager;
 import org.wahlzeit.services.LogBuilder;
 
 import javax.servlet.ServletException;
@@ -28,12 +28,12 @@ public class PersistPhotoAgent extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String id = request.getParameter(Photo.ID);
+		String id = request.getParameter(FoodPhoto.ID);
 		log.config(LogBuilder.createSystemMessage().addParameter("Try to persist PhotoId", id).toString());
 		if (id != null && !"".equals(id)) {
-			Photo photo = PhotoManager.getInstance().getPhoto(id);
+			FoodPhoto photo = (FoodPhoto) FoodPhotoManager.getInstance().getPhoto(id);
 			if (photo != null) {
-				PhotoManager.getInstance().savePhoto(photo);
+				FoodPhotoManager.getInstance().savePhoto(photo);
 				log.config(LogBuilder.createSystemMessage().addMessage("Photo saved.").toString());
 			} else {
 				response.setStatus(299);

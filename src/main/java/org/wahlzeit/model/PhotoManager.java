@@ -1,4 +1,10 @@
-/*
+/**
+ * Class name: PhotoManager.java
+ * 
+ * Version 1.1
+ * 
+ * Last change date: 14/01/2018 by Benedikt Kreis
+ * 
  * Copyright (c) 2006-2009 by Dirk Riehle, http://dirkriehle.com
  *
  * This file is part of the Wahlzeit photo rating application.
@@ -48,7 +54,7 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 *
 	 */
-	protected static final PhotoManager instance = new PhotoManager();
+	protected static PhotoManager instance = new PhotoManager();
 
 	private static final Logger log = Logger.getLogger(PhotoManager.class.getName());
 
@@ -72,10 +78,25 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 *
 	 */
-	public static final PhotoManager getInstance() {
+	public static PhotoManager getInstance() {
+		if (instance == null) {
+			log.config(LogBuilder.createSystemMessage().addAction("PhotoManager was null. PhotoMagager is now set.").toString());
+			setInstance(new FoodPhotoManager());
+		}
 		return instance;
 	}
 
+	/**
+	 * Method to set the singleton instance of PhotoFactory.
+	 */
+	protected static synchronized void setInstance(PhotoManager photoManager) {
+		if (instance != null) {
+			throw new IllegalStateException("Attempt to initialize PhotoManager twice");
+		}
+
+		instance = photoManager;
+	}
+	
 	/**
 	 *
 	 */

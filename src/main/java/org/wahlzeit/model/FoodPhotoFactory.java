@@ -1,10 +1,10 @@
 /**Class name: FoodPhotoFactory.java
  * 
- * Version: 1.1
+ * Version: 1.2
  * 
  * Creation date: 12/11/2017
  * 
- * Last change date: 02/01/2018
+ * Last change date: 14/01/2018
  * 
  * Copyright (c) 2018 by Benedikt Kreis
  *
@@ -39,18 +39,23 @@ import org.wahlzeit.utils.PatternInstance;
 @Subclass
 public class FoodPhotoFactory extends PhotoFactory{
 
-	//initializes instance of FoodPhotoFactory
+	/**
+	 * initializes instance of FoodPhotoFactory
+	 */
 	private static FoodPhotoFactory instance = null;
 	
 	/**
 	 * @methodtype constructor
+	 * default constructor
 	 */
-	//default constructor
 	public FoodPhotoFactory() {
 		super();
 	}
 	
-	//initializes instance
+	/**
+	 * @methodtype getter
+	 * initializes instance
+	 */
 	public static void initialize() {
 		if (instance != null) {
 			getInstance();
@@ -63,8 +68,8 @@ public class FoodPhotoFactory extends PhotoFactory{
 
 	/**
 	 * @methodtype getter
+	 * gets instance
 	 */
-	//gets instance
 	public static synchronized FoodPhotoFactory getInstance() {
 		if (instance == null) {
 			setInstance(new FoodPhotoFactory());
@@ -77,31 +82,31 @@ public class FoodPhotoFactory extends PhotoFactory{
 
 	/**
 	 * @methodtype setter
+	 * sets instance
 	 */
-	//sets instance
+	
 	protected static synchronized void setInstance(FoodPhotoFactory foodPhotoFactoryInstance) {
 		if (instance != null) {
-			//Exception already exists
 			throw new IllegalStateException("There was an attempt to initalize FoodPhotoFactory more than once");
 		}
 		
 		instance = foodPhotoFactoryInstance;
 	}
-	
+
 	/**
 	 * @methodtype factory
+	 * creates a new photo with id
 	 */
-	//creates default FoodPhoto without ID
-	public FoodPhoto createFoodPhoto(String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
-		return new FoodPhoto(cuisine, vegetarian, vegan, spicinessIndicator);
-	} 
+	public FoodPhoto createPhoto(PhotoId id) {
+		return new FoodPhoto(id);
+	}
 	
 	/**
-	 * @methodtype factory
+	 *  @methodtype factory
+	 *  creates a new photo with the specified id and FoodType
 	 */
-	//creates FoodPhoto with ID
-	public FoodPhoto createFoodPhoto(PhotoId myID, String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
-		return new FoodPhoto(myID, cuisine, vegetarian, vegan, spicinessIndicator);
-	} 
+	public FoodPhoto createPhoto(PhotoId id, FoodType foodType) {
+		return new FoodPhoto(id, foodType);
+	}
 	
 }
