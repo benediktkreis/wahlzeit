@@ -29,8 +29,9 @@ package org.wahlzeit.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.wahlzeit.services.ObjectManager; 
 
-public class FoodManager {
+public class FoodManager extends ObjectManager{
 	private static FoodManager instance = new FoodManager();
 	
 	private List<Food> foodList = new ArrayList<>();
