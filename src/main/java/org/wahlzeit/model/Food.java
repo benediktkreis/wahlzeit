@@ -27,6 +27,25 @@
 
 package org.wahlzeit.model;
 
+/**	Creation of new type object
+ * 
+ * In order to create a new Food type object it is required to create a new instance of FoodType.
+ * There is a factory method called which creates a new TypeObject with given attributes.
+ * Afterwards the attributes are set in the constructor of the class FoodType by the FoodManager.
+ * The FoodManager has its own createFood() method to create the new instance of a TypeObject and manages them in a list.
+ * FoodPhoto.initialize() calls this factory method and the creates a photo.
+ * 
+ * 
+ * Solution space
+ * 
+ * Delegation -> seperate-object
+ * Selection -> on-the-spot
+ * Configuration -> in-code
+ * Instantiation -> in-code
+ * Initialization -> default
+ * Building -> default
+ */
+
 public class Food {
 	protected FoodType foodType = null;
 

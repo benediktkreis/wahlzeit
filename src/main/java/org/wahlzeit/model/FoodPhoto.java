@@ -30,6 +30,23 @@ package org.wahlzeit.model;
 
 import com.googlecode.objectify.annotation.Subclass;
 
+/**	Creation of a new photo
+ * 
+ * First the factory methods createPhoto() in the FoodPhotoFactory class is called.
+ * Then the createPhoto() method is called by PhotoUtil.createPhoto(), which is called by the FoodPhotoManager class. 
+ *  
+ * 
+ * Solution space
+ * 
+ * Delegation -> seperate-object
+ * Selection -> sub-classing
+ * Configuration -> in-code
+ * Instantiation -> by-class-object
+ * Initialization -> in-second-step
+ * Building -> default
+ */
+
+
 @Subclass
 public class FoodPhoto extends Photo {
 
