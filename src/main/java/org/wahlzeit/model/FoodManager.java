@@ -46,7 +46,7 @@ public class FoodManager {
 	/**
 	 * @methodtype factory
 	 */
-	public Food createFood(FoodType foodType) {
+	public synchronized Food createFood(FoodType foodType) {
 		Food food = foodType.createInstance();
 		
 		if(foodList.contains(food)) {
@@ -61,7 +61,7 @@ public class FoodManager {
 	/**
 	 * @methodtype factory
 	 */
-	public FoodType createFoodType(String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
+	public synchronized FoodType createFoodType(String cuisine, boolean vegetarian, boolean vegan, int spicinessIndicator) {
 		FoodType foodType = new FoodType(cuisine, vegetarian, vegan, spicinessIndicator);
 		
 		if(foodTypes.contains(foodType)) {

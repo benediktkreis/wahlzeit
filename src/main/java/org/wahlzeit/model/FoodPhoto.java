@@ -36,17 +36,17 @@ public class FoodPhoto extends Photo {
 	private static final long serialVersionUID = 1L;
 
 	//declaration of variables
-	private static final String defCuisine = ""; //e.g. Italian, Chinese,...
-	private static final boolean defVegetarian = false;// vegetarian yes/no?
-	private static final boolean defVegan = false;// vegan yes/no?
-	private static final int defSpicinessIndicator = 0;// How spicy is a food from 0-10 (0 = not spicy, 10 = super hot)
+	private static final String DEFAULT_CUISINE = ""; //e.g. Italian, Chinese,...
+	private static final boolean DEFAULT_VEGETARIAN = false;// vegetarian yes/no?
+	private static final boolean DEFAULT_VEGAN = false;// vegan yes/no?
+	private static final int DEFAULT_SPICINESS_INDICATOR = 0;// How spicy is a food from 0-10 (0 = not spicy, 10 = super hot)
 	
 	/**
 	 * @methodtype Constructor
 	 */
 	public FoodPhoto(PhotoId myId) {
 		super(myId);
-		this.initialize(defCuisine, defVegetarian, defVegan, defSpicinessIndicator);
+		this.initialize(DEFAULT_CUISINE, DEFAULT_VEGETARIAN, DEFAULT_VEGAN, DEFAULT_SPICINESS_INDICATOR);
 	}
 	
 	/**
